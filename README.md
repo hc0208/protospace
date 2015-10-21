@@ -23,17 +23,15 @@ users
 
 prototypes
 - id
+- title
 - catchcopy
 - concept
 - user_id
 
-thumbnails
+thumbnails(main, sub)
 - id
 - prototype_id
-
-small_thumbnails
-- id
-- prototype_id
+- role
 
 comments
 - id
@@ -89,6 +87,7 @@ prototype_tags
 
     class Thumbnail < ActiveRecord::Base
       belongs_to :prototype
+      enum role: [:main, :sub]
     end
 
     class SmallThumbnail < ActiveRecord::Base
