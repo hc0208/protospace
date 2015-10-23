@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'top#index'
+  root 'prototype/ranking#index'
   resources :users, only: [:show, :edit, :update]
 
   # Example of regular route:
