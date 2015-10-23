@@ -21,10 +21,8 @@
               %span.caret
             %ul.dropdown-menu{:role => "menu"}
               %li
-                /%a{:href => "#"} Profile Edit
                 =link_to "Profile Edit", edit_user_path(current_user.id)
               %li
-                /%a{:href => "/users/sign_out"} Logout
                 =link_to "Logout",destroy_user_session_path, method: :delete
           %li
             .btn.btn-primary.navbar-btn
