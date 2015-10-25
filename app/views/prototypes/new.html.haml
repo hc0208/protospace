@@ -8,15 +8,18 @@
     .row
       .col-md-12
         .cover-image-upload
-          %input{:type => "file"}/
+          /%input{:type => "file"}/
+          =f.file_field :image_url
       .col-md-12
         %ul.proto-sub-list.list-group
           %li.list-group-item.col-md-4
             .image-upload
-              %input{:type => "file"}/
+              /%input{:type => "file"}/
+              =f.file_field :image_url
           %li.list-group-item.col-md-4
             .image-upload
-              %input{:type => "file"}/
+              /%input{:type => "file"}/
+              =f.file_field :image_url
           %li.list-group-item.col-md-4
             .image-upload-plus
               %span +
