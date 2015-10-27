@@ -31,7 +31,7 @@ prototypes
 thumbnails(main, sub)
 - id
 - prototype_id
-- image_url
+- image
 - role
 
 comments
