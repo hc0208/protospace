@@ -41,5 +41,6 @@
             %input{:type => "text", :placeholder => "Application"}/
     .row.text-center.proto-btn
       /%button.btn.btn-lg.btn-primary.btn-block{:type => "submit"} Publish
+      /= hidden_field_tag(:prototype_id, @prototype.id)
       =f.submit "Publish", class: "btn btn-lg btn-primary btn-block"
 
