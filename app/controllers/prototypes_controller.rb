@@ -1,18 +1,15 @@
 class PrototypesController < ApplicationController
   def new
+    @prototype = Prototype.new
+    @prototype.thumbnails.build
   end
   def create
-    prototype = Prototype.create(title: prototype_params[:title], catchcopy: prototype_params[:catchcopy], concept: prototype_params[:concept], user_id: current_user.id)
-    Thumbnail.create(image: thumbnail_params[:image], prototype_id: prototype.id)
+    @prototype = Prototype.create(prototype_params)
     redirect_to controller: 'prototype/ranking', action: 'index'
   end
 
   private
   def prototype_params
-    params.permit(:title, :catchcopy, :concept, :user_id)
-  end
-
-  def thumbnail_params
-    params.permit(:image)
+    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role]).merge(user_id: current_user.id)
   end
 end
