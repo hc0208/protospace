@@ -1,17 +1,16 @@
 .col-sm-4.col-md-3.proto-content
   .thumbnail
-    %a{:href => ""}
-      = image_tag prototype.thumbnails.main.first.image
-      .caption
-        %h3 #{prototype.title}
-        .proto-meta
-          .proto-user
-            %a{:href => "#"} by #{prototype.user.name}
-          .proto-posted
-            #{prototype.created_at.strftime("%Y年%m月%d日")}
-        %ul.proto-tag-list.list-inline
-          %li
-            %a{:href => "#", :class => "btn btn-default"} iPad
-          %li
-            %a{:href => "#", :class => "btn btn-default"} wireframe
+    = link_to image_tag prototype.thumbnails.main.first.image
+    .caption
+      %h3 #{prototype.title}
+      .proto-meta
+        .proto-user
+          = link_to "by #{prototype.user.name}"
+        .proto-posted
+          #{prototype.created_at.strftime("%Y年%m月%d日")}
+      %ul.proto-tag-list.list-inline
+        %li
+          = link_to "iPad","#", class: "btn btn-default"
+        %li
+          = link_to "wireframe","#", class: "btn btn-default"
 
