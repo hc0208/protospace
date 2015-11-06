@@ -9,7 +9,7 @@
           %li
             =link_to "Delete", "/prototypes/#{prototype.id}", method: :delete
           %li
-            =link_to "Edit"
+            =link_to "Edit", "/prototypes/#{prototype.id}/edit"
     .caption
       %h3 #{prototype.title}
       .proto-meta
