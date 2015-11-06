@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   #attr_accessor :name, :avatar, :profile, :member, :works
   has_many :prototypes
+  has_many :comments
 end
