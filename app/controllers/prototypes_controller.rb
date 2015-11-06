@@ -1,8 +1,11 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: [:destroy, :edit, :update]
+  before_action :set_prototype, only: [:destroy, :edit, :update, :show]
   def new
     @prototype = Prototype.new
     @prototype.thumbnails.build
+  end
+
+  def show
   end
 
   def create
