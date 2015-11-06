@@ -1,4 +1,5 @@
 class PrototypesController < ApplicationController
+  before_action :set_prototype, only: [:destroy, :edit, :update]
   def new
     @prototype = Prototype.new
     @prototype.thumbnails.build
@@ -10,21 +11,22 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    prototype = Prototype.find(id_params[:id])
-    if prototype.user_id == current_user.id
-      prototype.destroy
+    if @prototype.user_id == current_user.id
+      @prototype.destroy
     end
     redirect_to :root
   end
 
   def edit
-    @prototype = Prototype.find(params[:id])
   end
 
   def update
-    prototype = Prototype.find(params[:id])
-    prototype.update(update_params)
+    @prototype.update(update_params)
     redirect_to :root
+  end
+
+  def set_prototype
+    @prototype = Prototype.find(id_params[:id])
   end
 
   private
