@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'prototype/ranking#index'
   resources :users, only: [:edit, :update]
-  resources :prototypes, only: [:new, :create, :edit, :update, :destroy, :show]
+  resources :prototypes, only: [:new, :create, :edit, :update, :destroy, :show] do
+    resources :comments, only: [:create]
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
