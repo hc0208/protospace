@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   #attr_accessor :name, :avatar, :profile, :member, :works
   has_many :prototypes
   has_many :comments
+  has_many :likes
 end

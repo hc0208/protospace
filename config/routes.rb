@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   resources :prototypes, only: [:new, :create, :edit, :update, :destroy, :show] do
     resources :comments, only: [:create]
+    resources :likes, only: [:create, :destroy]
   end
 
   # Example of regular route:
