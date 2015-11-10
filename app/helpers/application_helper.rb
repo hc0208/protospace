@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def like_count
-    @prototype.likes.length - 1
+    @prototype.likes.length
   end
 end

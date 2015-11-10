@@ -18,7 +18,6 @@ class PrototypesController < Prototype::RankingController
 
   def create
     @prototype = Prototype.create(prototype_params)
-    Like.create(like_params)
     redirect_to controller: 'prototype/ranking', action: 'index'
   end
 
@@ -52,9 +51,5 @@ class PrototypesController < Prototype::RankingController
 
   def id_params
     params.permit(:id, thumbnails_attributes: [:image, :role, :id])
-  end
-
-  def like_params
-    params.permit(:prototype_id).merge(prototype_id: @prototype.id)
   end
 end
