@@ -3,8 +3,7 @@
     .col-md-6
       .media
         .media-left
-          %a{:href => "#"}
-            %img.media-object{:alt => "64x64", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", :src => "#{@prototype.user.avatar}", :style => "width: 64px; height: 64px;"}/
+          = link_to image_tag("#{@prototype.user.avatar}", alt: "64x64", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", style: "width: 64px; height: 64px;", class: "media-object")
         .media-body
           %h4#top-aligned-media.media-heading
             #{@prototype.title}
@@ -36,9 +35,9 @@
       %h4 Tag List
       %ul.proto-tag-list.list-inline
         %li
-          %a{:href => "#", :class => "btn btn-default"} iPad
+          = link_to "iPad", "#", class: "btn btn-default"
         %li
-          %a{:href => "#", :class => "btn btn-default"} wireframe
+          = link_to "wireframe", "#", class: "btn btn-default"
   .row.proto-comments
     %h4.col-md-12
       Comments

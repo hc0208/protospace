@@ -1,12 +1,16 @@
 class LikesController < ApplicationController
+
   def create
     Like.create(like_params)
-    @prototype = Prototype.find(params[:prototype_id])
-    @likes = Like.find_by(prototype_id: params[:prototype_id], user_id: current_user.id) if user_signed_in?
+    set_like
   end
 
   def destroy
     Like.destroy(params[:id])
+    set_like
+  end
+
+  def set_like
     @prototype = Prototype.find(params[:prototype_id])
     @likes = Like.find_by(prototype_id: params[:prototype_id], user_id: current_user.id) if user_signed_in?
   end
