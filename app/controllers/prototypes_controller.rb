@@ -1,5 +1,6 @@
-class PrototypesController < ApplicationController
+class PrototypesController < Prototype::RankingController
   before_action :set_prototype, only: [:destroy, :edit, :update, :show]
+
   def new
     @prototype = Prototype.new
     @prototype.thumbnails.build
@@ -8,6 +9,11 @@ class PrototypesController < ApplicationController
   def show
     @comment = Comment.new
     @likes = Like.find_by(prototype_id: params[:id], user_id: current_user.id) if user_signed_in?
+  end
+
+  def newest
+    @prototype = Prototype.order("created_at DESC")
+    render action: :index
   end
 
   def create

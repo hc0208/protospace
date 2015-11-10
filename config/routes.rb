@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :prototypes, only: [:new, :create, :edit, :update, :destroy, :show] do
     resources :comments, only: [:create]
     resources :likes, only: [:create, :destroy]
+    collection do
+      get 'newest'
+    end
   end
 
   # Example of regular route:

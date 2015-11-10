@@ -1,0 +1,10 @@
+- if current_page?(root_path)
+  %li.active{role: "presentation"}
+    = link_to "Popular PROTO", root_path
+  %li{role: "presentation"}
+    = link_to "NewestPROTO", newest_prototypes_path
+- else
+  %li{role: "presentation"}
+    = link_to "Popular PROTO", root_path
+  %li.active{role: "presentation"}
+    = link_to "NewestPROTO", newest_prototypes_path

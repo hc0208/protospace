@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107055601) do
+ActiveRecord::Schema.define(version: 20151110133855) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "prototype_id", limit: 4
     t.integer  "user_id",      limit: 4
+    t.integer  "prototype_id", limit: 4
     t.text     "text",         limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(version: 20151107055601) do
   end
 
   create_table "prototypes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "catchcopy",  limit: 65535
-    t.text     "concept",    limit: 65535
-    t.integer  "user_id",    limit: 4
+    t.string   "title",       limit: 255
+    t.text     "catchcopy",   limit: 65535
+    t.text     "concept",     limit: 65535
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "likes_count", limit: 4,     default: 0
   end
 
   create_table "thumbnails", force: :cascade do |t|
