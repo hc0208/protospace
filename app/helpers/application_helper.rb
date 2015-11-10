@@ -6,4 +6,8 @@ module ApplicationHelper
   def subrole
     @prototype.thumbnails.sub
   end
+
+  def like_count
+    @prototype.likes.length
+  end
 end
