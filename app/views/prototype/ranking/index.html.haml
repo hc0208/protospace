@@ -6,10 +6,16 @@
   .container
     .row
       %ul.nav.nav-pills.col-lg-11
-        %li.active{:role => "presentation"}
-          %a{:href => "#"} Popular PROTO
-        %li{:role => "presentation"}
-          %a{:href => "#"} Newest PROTO
+        - if current_page?(root_path)
+          %li.active{role: "presentation"}
+            = link_to "Popular PROTO", root_path
+          %li{role: "presentation"}
+            = link_to "NewestPROTO", newest_prototypes_path
+        - else
+          %li{role: "presentation"}
+            = link_to "Popular PROTO", root_path
+          %li.active{role: "presentation"}
+            = link_to "NewestPROTO", newest_prototypes_path
       %button{:type => "button", :class => "btn btn-default col-lg-1"} View Tags
 
 .container.proto-list

@@ -1,5 +1,6 @@
-class PrototypesController < ApplicationController
+class PrototypesController < Prototype::RankingController
   before_action :set_prototype, only: [:destroy, :edit, :update, :show]
+
   def new
     @prototype = Prototype.new
     @prototype.thumbnails.build
@@ -10,8 +11,14 @@ class PrototypesController < ApplicationController
     @likes = Like.find_by(prototype_id: params[:id], user_id: current_user.id) if user_signed_in?
   end
 
+  def newest
+    @prototype = Prototype.order("created_at DESC")
+    render action: :index
+  end
+
   def create
     @prototype = Prototype.create(prototype_params)
+    Like.create(like_params)
     redirect_to controller: 'prototype/ranking', action: 'index'
   end
 
@@ -45,5 +52,9 @@ class PrototypesController < ApplicationController
 
   def id_params
     params.permit(:id, thumbnails_attributes: [:image, :role, :id])
+  end
+
+  def like_params
+    params.permit(:prototype_id).merge(prototype_id: @prototype.id)
   end
 end
