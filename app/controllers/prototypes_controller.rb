@@ -35,6 +35,8 @@ class PrototypesController < Prototype::RankingController
 
   def update
     @prototype.update(update_params)
+    @prototype.label_list = params[:tag_list]
+    @prototype.save
     redirect_to :root
   end
 
@@ -48,7 +50,7 @@ class PrototypesController < Prototype::RankingController
   end
 
   def update_params
-    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role, :id]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role, :id]).merge(user_id: current_user.id, tag_list: params[:tag_list])
   end
 
   def id_params
