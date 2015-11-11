@@ -20,5 +20,5 @@
       %ul.proto-tag-list.list-inline
         - prototype.label_list.each do |label|
           %li
-            = link_to "#{label}","#", class: "btn btn-default"
+            = link_to "#{label}", tag_path(label), class: "btn btn-default"
 
