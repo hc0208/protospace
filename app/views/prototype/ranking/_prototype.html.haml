@@ -18,8 +18,7 @@
         .proto-posted
           #{prototype.created_at.strftime("%Y年%m月%d日")}
       %ul.proto-tag-list.list-inline
-        %li
-          = link_to "iPad","#", class: "btn btn-default"
-        %li
-          = link_to "wireframe","#", class: "btn btn-default"
+        - prototype.label_list.each do |label|
+          %li
+            = link_to "#{label}", tag_path(label), class: "btn btn-default"
 

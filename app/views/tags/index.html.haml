@@ -1,0 +1,23 @@
+.container
+  .row
+    .tags-list
+      %h2
+        Tags list
+      %ul
+        :css
+          .tags-list ul {
+            list-style: none;
+          }
+          .tags-list li {
+            margin-bottom: 10px;
+            width: 33.33333333%;
+          }
+          .tags-list ul a:hover {
+              background-color: #fff;
+              box-shadow: 0 0 10px rgba(103,171,250,0.2);
+              color: #67ABFA;
+          }
+        - ActsAsTaggableOn::Tag.most_used.each do |label|
+          %li.col-md-4
+            = link_to "#{label}", tag_path(label.name), class: "btn btn-default"
+

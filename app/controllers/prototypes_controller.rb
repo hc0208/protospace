@@ -18,6 +18,8 @@ class PrototypesController < Prototype::RankingController
 
   def create
     @prototype = Prototype.create(prototype_params)
+    @prototype.label_list.add(params[:tag_list])
+    @prototype.save
     redirect_to controller: 'prototype/ranking', action: 'index'
   end
 
@@ -33,6 +35,8 @@ class PrototypesController < Prototype::RankingController
 
   def update
     @prototype.update(update_params)
+    @prototype.label_list = params[:tag_list]
+    @prototype.save
     redirect_to :root
   end
 
@@ -42,11 +46,11 @@ class PrototypesController < Prototype::RankingController
 
   private
   def prototype_params
-    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role]).merge(user_id: current_user.id, tag_list: params[:tag_list])
   end
 
   def update_params
-    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role, :id]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role, :id]).merge(user_id: current_user.id, tag_list: params[:tag_list])
   end
 
   def id_params

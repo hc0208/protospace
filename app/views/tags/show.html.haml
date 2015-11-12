@@ -1,15 +1,15 @@
-= render "subheader"
+= render 'prototype/ranking/subheader'
 
 .filter-nav
   .container
     .row
       %ul.nav.nav-pills.col-lg-11
-        = render 'orderproto'
+        = render 'prototype/ranking/orderproto'
       = link_to "View Tags", tags_path, class: "btn btn-default col-lg-1"
 
 .container.proto-list
   .row
-    = render partial: "prototype", collection: @prototype
+    = render partial: "prototype/ranking/prototype", collection: @prototype
 
 .text-center
   %ul.pagination
