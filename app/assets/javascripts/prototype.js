@@ -1,6 +1,6 @@
 $(function(){
 
-var file = document.querySelector('#file');
+var file = document.querySelector('#prototype_thumbnails_attributes_0_image');
 
 file.onchange = function (){
   var fileList = file.files;
@@ -12,7 +12,7 @@ file.onchange = function (){
   };
 };
 
-var file2 = document.querySelector('#file2');
+var file2 = document.querySelector('#prototype_thumbnails_attributes_1_image');
 
 file2.onchange = function (){
   var fileList = file2.files;
@@ -24,7 +24,7 @@ file2.onchange = function (){
   };
 };
 
-var file3 = document.querySelector('#file3');
+var file3 = document.querySelector('#prototype_thumbnails_attributes_2_image');
 
 file3.onchange = function (){
   var fileList = file3.files;

@@ -18,10 +18,10 @@
       = image_tag("#{@prototype.thumbnails.main.first.image}", :class => 'img-responsive')
     .col-md-3
       %ul.proto-sub-list.list-group
-        - if @prototype.thumbnails.sub.first.image?
+        - if sub1image
           %li.list-group-item
             = image_tag("#{@prototype.thumbnails.sub.first.image}", :class => 'img-responsive')
-        - if @prototype.thumbnails.sub.second.image?
+        - if sub2image
           %li.list-group-item
             = image_tag("#{@prototype.thumbnails.sub.second.image}", :class => 'img-responsive')
   .row.proto-description
@@ -40,7 +40,7 @@
   .row.proto-comments
     %h4.col-md-12
       Comments
-      %span.num (#{@prototype.comments.length})
+      %span.num (#{comment_count})
     .col-md-8
       #comments
         = render partial: "comments/comment", collection: @prototype.comments
