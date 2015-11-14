@@ -8,15 +8,22 @@
         .cover-image-upload
           =f.fields_for :thumbnails do |i|
             =i.file_field :image
+            = image_tag '', id: "main_preview"
             =i.hidden_field :role, value: :main
       .col-md-12
         %ul.proto-sub-list.list-group
-          - 2.times do
-            %li.list-group-item.col-md-4
-              .image-upload
-                =f.fields_for :thumbnails do |i|
-                  =i.file_field :image
-                  =i.hidden_field :role, value: :sub
+          %li.list-group-item.col-md-4
+            .image-upload
+              =f.fields_for :thumbnails do |i|
+                =i.file_field :image
+                = image_tag '', id: "sub_0_preview"
+                =i.hidden_field :role, value: :sub
+          %li.list-group-item.col-md-4
+            .image-upload
+              =f.fields_for :thumbnails do |i|
+                =i.file_field :image
+                = image_tag '', id: "sub_1_preview"
+                =i.hidden_field :role, value: :sub
           %li.list-group-item.col-md-4
             .image-upload-plus
               %span +
