@@ -8,7 +8,7 @@
           %h4#top-aligned-media.media-heading
             #{@prototype.title}
           .proto-user
-            = link_to "by #{@prototype.user.name}"
+            = link_to "by #{@prototype.user.name}", user_path(@prototype.user.id)
             %span.degree #{@prototype.user.member}
 
     .col-md-6.text-right#like
