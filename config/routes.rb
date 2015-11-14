@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'prototype/ranking#index'
   resources :tags, only: [:index, :show]
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:show, :edit, :update]
   resources :prototypes, only: [:new, :create, :edit, :update, :destroy, :show] do
     resources :comments, only: [:create]
     resources :likes, only: [:create, :destroy]
