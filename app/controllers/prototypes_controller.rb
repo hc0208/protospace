@@ -12,7 +12,7 @@ class PrototypesController < Prototype::RankingController
   end
 
   def newest
-    @prototype = Prototype.order("created_at DESC")
+    @prototype = Prototype.order("created_at DESC").page(params[:page]).per(2)
     render action: :index
   end
 
