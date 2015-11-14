@@ -50,4 +50,6 @@ gem 'carrierwave'
 gem 'pry-rails'
 gem 'acts-as-taggable-on'
 gem 'kaminari'
+gem 'fog'
+gem 'aws-sdk'
 
