@@ -23,15 +23,16 @@ class PrototypesController < Prototype::RankingController
   end
 
   def newest
-    @prototype = Prototype.order("created_at DESC").page(params[:page]).per(8)
-    render action: :index
+    @prototype = Prototype.order(created_at: :DESC).page(params[:page]).per(8)
+    render :index
   end
 
   def destroy
-    if @prototype.user_id == current_user.id
-      @prototype.destroy
+    if @prototype.destroy
+      redirect_to root_path, notice: "#{@prototype.title} was successfully deleted"
+    else
+      redirect_to root_path, alert: "#{@prototype.title} was unsuccessfully deleted"
     end
-    redirect_to :root
   end
 
   def edit
@@ -40,7 +41,7 @@ class PrototypesController < Prototype::RankingController
   def update
     @prototype.label_list = tag_params
     if @prototype.update(prototype_params)
-      redirect_to root_path, notice: 'The new prototype was successfully updated'
+      redirect_to root_path, notice: "#{@prototype.title} was successfully updated"
     else
       render :edit
     end
@@ -65,8 +66,4 @@ class PrototypesController < Prototype::RankingController
       thumbnails_attributes: [:image, :role, :id]
     ).merge(tag_list: tag_params)
   end
-
-  # def id_params
-  #   params.permit(:id, thumbnails_attributes: [:image, :role, :id])
-  # end
 end

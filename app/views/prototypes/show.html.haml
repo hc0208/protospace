@@ -15,7 +15,7 @@
       = render "likes/likes"
   .row
     .col-md-9
-      = image_tag("#{@prototype.thumbnails.main.first.image}", :class => 'img-responsive')
+      = image_tag("#{@prototype.thumbnails.main.first.image}", class: 'img-responsive')
     .col-md-3
       %ul.proto-sub-list.list-group
         - if sub1images
@@ -48,7 +48,6 @@
         %h4 Write a comment
         .row
           .form-group.col-md-10
-            =f.text_area :text, rows: "3", placeholder: "Your comments", class: "form-control"
+            = f.text_area :text, rows: "3", placeholder: "Your comments", class: "form-control"
           .form-group.col-md-2
-            =f.submit "Comment", class: "btn btn-primary"
-
+            = f.submit "Comment", class: "btn btn-primary"
