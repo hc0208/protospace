@@ -8,51 +8,44 @@ Overview
 protospaceとはユーザーがプロトタイプを投稿し、それに対し他のユーザーがコメントやlikeができるアプリケーションです。
 
 ##DB設計
-作成するテーブルとカラム
+作成するテーブルとカラムとその型
 
 
 users
 - id
-- name
-- avatar
-- profile
-- member
-- works
+- name         string
+- avatar       text
+- profile      text
+- member       text
+- works        text
 - email
 - password
 
 prototypes
 - id
-- title
-- catchcopy
-- concept
-- user_id
+- title        string
+- catchcopy    text
+- concept      text
+- user_id      integer
+- likes_count  integer
+- tag_list
 
-thumbnails(main, sub)
+thumbnails
 - id
-- prototype_id
-- image
-- role
+- prototype_id integer
+- image        text
+- role         integer
 
 comments
 - id
-- prototype_id
-- user_id
-- text
+- prototype_id integer
+- user_id      integer
+- text         text
 
 likes
-- user_id
-- prototype_id
-
-tags
 - id
-- name
-
-prototype_tags
-- id
-- tags_id
-- prototypes_id
-
+- user_id      integer
+- prototype_id integer
 
 ##アソシエーション
 
@@ -65,33 +58,22 @@ prototype_tags
 
     class Prototype < ActiveRecord::Base
       belongs_to :user
-      belongs_to :thumnail
-      has_many :small_thumbnails
+      has_many :thumbnails
+      has_many :comments
       has_many :likes
-      has_many :prototype_tags
-      has_many :tags, through: :prototype_tags
     end
 
     class Comment < ActiveRecord::Base
       belongs_to :user
+      belongs_to :prototype
     end
 
-    class Tag < ActiveRecord::Base
-      has_many :prototype_tags
-      has_many :prototypes, through: :prototype_tags
-    end
-
-    class PrototypeTag < ActiveRecord::Base
-      belongs_to :tag
+    class Like < ActiveRecord::Base
+      belongs_to :user
       belongs_to :prototype
     end
 
     class Thumbnail < ActiveRecord::Base
       belongs_to :prototype
-      enum role: [:main, :sub]
+      enum role: %i(main sub)
     end
-
-    class SmallThumbnail < ActiveRecord::Base
-      belongs_to :small_thumbnail
-    end
-
