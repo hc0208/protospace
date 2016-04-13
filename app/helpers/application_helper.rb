@@ -1,10 +1,6 @@
 module ApplicationHelper
-  def mainrole
-    @prototype.thumbnails.main
-  end
-
-  def subrole
-    @prototype.thumbnails.sub
+  def placeholder
+    ['Web Design', 'UI', 'Application']
   end
 
   def like_count

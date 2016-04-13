@@ -15,6 +15,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'kaminari'
+gem 'draper'
 
 # user_management
 gem 'devise'

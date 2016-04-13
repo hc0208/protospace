@@ -1,6 +1,6 @@
 .col-sm-4.col-md-3.proto-content
   .thumbnail{style: "position: relative"}
-    = link_to image_tag(prototype.thumbnails.main.first.image), "/prototypes/#{prototype.id}"
+    = link_to image_tag(prototype.thumbnails.main.first.try(:image)), "/prototypes/#{prototype.id}"
     -if user_signed_in? && current_user.id == prototype.user_id
       %li.dropdown.btn.btn-default{style: "position: absolute; top: 5px; left: 3px;"}
         %a.dropdown-toggle{aria: {expanded: "false"}, data: {toggle: "dropdown"}, href: "#", role: "button"}
@@ -21,4 +21,3 @@
         - prototype.label_list.each do |label|
           %li
             = link_to "#{label}", tag_path(label), class: "btn btn-default"
-

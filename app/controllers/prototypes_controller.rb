@@ -6,6 +6,17 @@ class PrototypesController < Prototype::RankingController
     @prototype.thumbnails.build
   end
 
+  def create
+    @prototype = current_user.prototypes.new(prototype_params)
+    @prototype.label_list.add(tag_params)
+    if @prototype.save
+      redirect_to root_path, notice: 'The new prototype was successfully created'
+    else
+      @prototype.thumbnails.build
+      render :new
+    end
+  end
+
   def show
     @comment = Comment.new
     @likes = Like.find_by(prototype_id: params[:id], user_id: current_user.id) if user_signed_in?
@@ -14,13 +25,6 @@ class PrototypesController < Prototype::RankingController
   def newest
     @prototype = Prototype.order("created_at DESC").page(params[:page]).per(8)
     render action: :index
-  end
-
-  def create
-    @prototype = Prototype.create(prototype_params)
-    @prototype.label_list.add(params[:tag_list])
-    @prototype.save
-    redirect_to controller: 'prototype/ranking', action: 'index'
   end
 
   def destroy
@@ -34,26 +38,35 @@ class PrototypesController < Prototype::RankingController
   end
 
   def update
-    @prototype.update(update_params)
-    @prototype.label_list = params[:tag_list]
-    @prototype.save
-    redirect_to :root
-  end
-
-  def set_prototype
-    @prototype = Prototype.find(id_params[:id])
+    @prototype.label_list = tag_params
+    if @prototype.update(prototype_params)
+      redirect_to root_path, notice: 'The new prototype was successfully updated'
+    else
+      render :edit
+    end
   end
 
   private
+
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def tag_params
+    params[:prototype][:tag_list]
+  end
+
   def prototype_params
-    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role]).merge(user_id: current_user.id, tag_list: params[:tag_list])
+    params.require(:prototype).permit(
+      :title,
+      :catchcopy,
+      :concept,
+      :user_id,
+      thumbnails_attributes: [:image, :role, :id]
+    ).merge(tag_list: tag_params)
   end
 
-  def update_params
-    params.require(:prototype).permit(:title, :catchcopy, :concept, :user_id, thumbnails_attributes: [:image, :role, :id]).merge(user_id: current_user.id, tag_list: params[:tag_list])
-  end
-
-  def id_params
-    params.permit(:id, thumbnails_attributes: [:image, :role, :id])
-  end
+  # def id_params
+  #   params.permit(:id, thumbnails_attributes: [:image, :role, :id])
+  # end
 end
