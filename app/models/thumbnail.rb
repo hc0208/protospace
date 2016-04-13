@@ -1,5 +1,5 @@
 class Thumbnail < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   belongs_to :prototype
-  enum role: [:main, :sub]
+  enum role: %i(main sub)
 end

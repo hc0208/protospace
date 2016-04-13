@@ -1,6 +1,6 @@
 class Prototype < ActiveRecord::Base
-  has_many :thumbnails
   belongs_to :user
+  has_many :thumbnails
   has_many :comments
   has_many :likes
 
