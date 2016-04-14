@@ -7,7 +7,7 @@
     .row
       .col-md-12
         .cover-image-upload
-          = f.fields_for :thumbnails, @prototype.thumbnails.main do |i|
+          = f.fields_for :thumbnails, @prototype.decorate.mainrole do |i|
             = i.file_field :image
             = image_tag '', id: "main_preview"
             = i.hidden_field :role, value: :main
@@ -16,7 +16,7 @@
           - 2.times do |num|
             %li.list-group-item.col-md-4
               .image-upload
-                = f.fields_for :thumbnails, @prototype.thumbnails.sub do |i|
+                = f.fields_for :thumbnails, @prototype.decorate.subrole do |i|
                   = i.file_field :image
                   = image_tag '', id: "sub_#{num}_preview"
                   = i.hidden_field :role, value: :sub

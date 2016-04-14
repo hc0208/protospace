@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @prototype = Prototype.where(user_id: params[:id]).page(params[:page]).per(8)
+    @prototype = @user.prototypes.page(params[:page]).per(8)
   end
 
   def edit
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def update
     current_user.update(update_params)
-    redirect_to controller: 'prototype/ranking', action: 'index'
+    redirect_to root_path
   end
 
   private
