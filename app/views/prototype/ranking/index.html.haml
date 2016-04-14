@@ -8,10 +8,9 @@
       = link_to "View Tags", tags_path, class: "btn btn-default col-lg-1"
 
 .container.proto-list
-  .row
+  .row#masonry-container
     = render partial: "prototype", collection: @prototype
 
 .text-center
   %ul.pagination
     = paginate(@prototype)
-

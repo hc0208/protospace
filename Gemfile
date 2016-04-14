@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'kaminari'
 gem 'draper'
+gem 'masonry-rails'
 
 # user_management
 gem 'devise'
