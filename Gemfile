@@ -17,6 +17,7 @@ gem 'erb2haml'
 gem 'kaminari'
 gem 'draper'
 gem 'masonry-rails'
+gem 'jquery-turbolinks'
 
 # user_management
 gem 'devise'
