@@ -3,7 +3,7 @@
     .col-md-6
       .media
         .media-left
-          = link_to image_tag("#{@prototype.user.avatar}", alt: "64x64", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", style: "width: 64px; height: 64px;", class: "media-object")
+          = image_tag("#{@prototype.user.avatar}", alt: "64x64", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", style: "width: 64px; height: 64px;", class: "media-object")
         .media-body
           %h4#top-aligned-media.media-heading
             #{@prototype.title}
@@ -18,12 +18,9 @@
       = image_tag("#{@prototype.thumbnails.main.first.image}", class: 'img-responsive')
     .col-md-3
       %ul.proto-sub-list.list-group
-        - if sub1images
+        - @prototype.thumbnails.sub.each do |thumbnail|
           %li.list-group-item
-            = image_tag("#{sub1image}", class: 'img-responsive')
-        - if sub2images
-          %li.list-group-item
-            = image_tag("#{sub2image}", class: 'img-responsive')
+            = image_tag(thumbnail.image, class: 'img-responsive')
   .row.proto-description
     .col-md-3
       %h4 Catch Copy
@@ -40,14 +37,15 @@
   .row.proto-comments
     %h4.col-md-12
       Comments
-      %span.num (#{comment_count})
+      %span.num (#{@prototype.comments.length})
     .col-md-8
       #comments
         = render partial: "comments/comment", collection: @prototype.comments
-      = form_for [@prototype, @comment], class: "form-inline", role: "form", remote: true do |f|
-        %h4 Write a comment
-        .row
-          .form-group.col-md-10
-            = f.text_area :text, rows: "3", placeholder: "Your comments", class: "form-control"
-          .form-group.col-md-2
-            = f.submit "Comment", class: "btn btn-primary"
+      - if user_signed_in?
+        = form_for [@prototype, @comment], class: "form-inline", role: "form", remote: true do |f|
+          %h4 Write a comment
+          .row
+            .form-group.col-md-10
+              = f.text_area :text, rows: "3", placeholder: "Your comments", class: "form-control"
+            .form-group.col-md-2
+              = f.submit "Comment", class: "btn btn-primary"
