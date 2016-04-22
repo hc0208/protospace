@@ -19,9 +19,8 @@
             %h4 Works
             %p #{@user.works}
 .container.proto-list
-  .row
+  .row#masonry-container
     = render partial: "prototype/ranking/prototype", collection: @prototype
 .text-center
   %ul.pagination
     = paginate(@prototype)
-
