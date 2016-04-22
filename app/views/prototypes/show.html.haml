@@ -8,7 +8,7 @@
           %h4#top-aligned-media.media-heading
             #{@prototype.title}
           .proto-user
-            = link_to "by #{@prototype.user.name}", user_path(@prototype.user.id)
+            = link_to "by #{@prototype.user.name}", user_path(@prototype.user)
             %span.degree #{@prototype.user.member}
 
     .col-md-6.text-right#like
@@ -48,4 +48,4 @@
             .form-group.col-md-10
               = f.text_area :text, rows: "3", placeholder: "Your comments", class: "form-control"
             .form-group.col-md-2
-              = f.submit "Comment", class: "btn btn-primary"
+              = f.submit "Comment", class: "btn btn-primary", data: { disable_with: 'Sending...' }
