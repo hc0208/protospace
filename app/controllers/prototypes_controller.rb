@@ -23,7 +23,7 @@ class PrototypesController < Prototype::RankingController
   end
 
   def newest
-    @prototype = Prototype.order(created_at: :DESC).page(params[:page]).per(8)
+    @prototype = Prototype.includes(:user).order(created_at: :DESC).page(params[:page]).per(8)
     render :index
   end
 
