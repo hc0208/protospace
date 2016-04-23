@@ -12,7 +12,10 @@ class LikesController < ApplicationController
   private
 
   def like_params
-    params.permit(:user_id, :prototype_id).merge(prototype_id: params[:prototype_id])
+    params.permit(
+      :user_id,
+      :prototype_id
+    ).merge(prototype_id: params[:prototype_id])
   end
 
   def set_like
