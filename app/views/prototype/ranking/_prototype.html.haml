@@ -7,7 +7,7 @@
           = "action"
         %ul.dropdown-menu{role: :menu}
           %li
-            = link_to "Delete", prototype_path(prototype), method: :delete, data: { confirm: "本当に削除しますか?" }
+            %a{"data-toggle" => "modal", href: "#show_modal", role: "button"} Delete
           %li
             = link_to "Edit", edit_prototype_path(prototype)
     .caption
@@ -16,8 +16,23 @@
         .proto-user
           = link_to "by #{prototype.user.name}", user_path(prototype.user)
         .proto-posted
-          #{prototype.created_at.strftime("%Y年%m月%d日")}
+          #{prototype.created_at.strftime("%Y-%m-%d")}
       %ul.proto-tag-list.list-inline
         - prototype.label_list.each do |label|
           %li
             = link_to "#{label}", tag_path(label), class: "btn btn-default"
+
+#show_modal.modal.fade{role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        %h3#modal_title Are you ABSOLUTELY sure?
+      = form_for prototype, method: :delete do |f|
+        .modal-body
+          %p This will permanently delete the #{prototype.title} application.
+          %h4 Please type in the name of the prototype to confirm
+          = text_field_tag :name, '', class: "form-control", id: "inputtedPrototypeName", data: { 'name-id' => "#{prototype.title}" }
+        .modal-footer
+          %button.btn{"data-dismiss" => "modal"} Close
+          = f.submit "Delete", class: "btn btn-danger",id: "submit_btn", disabled: true

@@ -18,7 +18,10 @@ class PrototypesController < Prototype::RankingController
 
   def show
     @comment = Comment.new
-    @likes = Like.find_by(prototype_id: params[:id], user_id: current_user.id) if user_signed_in?
+    @likes = Like.find_by(
+               prototype_id: params[:id],
+               user_id: current_user.id
+             ) if user_signed_in?
   end
 
   def newest
@@ -31,7 +34,8 @@ class PrototypesController < Prototype::RankingController
   end
 
   def destroy
-    if @prototype.destroy
+    if @prototype.title == params[:name]
+      @prototype.destroy
       redirect_to root_path, notice: "#{@prototype.title} was successfully deleted"
     else
       redirect_to root_path, alert: "#{@prototype.title} was unsuccessfully deleted"
