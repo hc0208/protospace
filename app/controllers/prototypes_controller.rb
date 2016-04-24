@@ -12,8 +12,7 @@ class PrototypesController < Prototype::RankingController
     if @prototype.save
       redirect_to root_path, notice: 'The new prototype was successfully created'
     else
-      @prototype.thumbnails.build
-      render :new
+      redirect_to new_prototype_path, alert: 'Please fill in all required fields'
     end
   end
 

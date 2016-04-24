@@ -12,4 +12,8 @@ class PrototypeDecorator < Draper::Decorator
   def subrole
     thumbnails.sub.present? ? thumbnails.sub : ''
   end
+
+  def main_image
+    thumbnails.main.present? ? thumbnails.main.first.image : ''
+  end
 end

@@ -1,0 +1,7 @@
+- 1.upto(2) do |num|
+  = f.fields_for :thumbnails, @prototype.decorate.subrole do |i|
+    %li.list-group-item.col-md-4
+      .image-upload
+        = i.file_field :image, class: "js-prototype-image"
+        = image_tag '', id: "js_#{num}_preview"
+        = i.hidden_field :role, value: :sub

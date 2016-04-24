@@ -1,0 +1,7 @@
+- f.object.thumbnails.sub.each.with_index(1) do |sub_image, num|
+  = f.fields_for :thumbnails, sub_image do |i|
+    %li.list-group-item.col-md-4
+      .image-upload
+        = i.file_field :image, class: "js-prototype-image"
+        = image_tag sub_image.image, class: "prototype_image_preview", id: "js_#{num}_preview"
+        = i.hidden_field :role, value: :sub

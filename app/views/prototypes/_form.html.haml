@@ -8,18 +8,18 @@
       .col-md-12
         .cover-image-upload
           = f.fields_for :thumbnails, @prototype.decorate.mainrole do |i|
-            = i.file_field :image
-            = image_tag '', id: "main_preview"
+            = i.file_field :image, class: "js-prototype-image"
+            - if @prototype.thumbnails.main.present?
+              = image_tag @prototype.decorate.main_image, class: "prototype_image_preview", id: "js_0_preview"
+            - else
+              = image_tag '', id: "js_0_preview"
             = i.hidden_field :role, value: :main
       .col-md-12
         %ul.proto-sub-list.list-group
-          - 2.times do |num|
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.fields_for :thumbnails, @prototype.decorate.subrole do |i|
-                  = i.file_field :image
-                  = image_tag '', id: "sub_#{num}_preview"
-                  = i.hidden_field :role, value: :sub
+          - if action == 'new'
+            = render 'new_sub_image_form', f: f
+          - else
+            = render 'edit_sub_image_form', f: f
           %li.list-group-item.col-md-4
             .image-upload-plus
               %span +
