@@ -1,6 +1,6 @@
 class Prototype::RankingController < ApplicationController
   def index
-    @prototype = Prototype\
+    @prototype = Prototype \
                    .includes(:user)
                    .order(likes_count: :DESC)
                    .page(params[:page])

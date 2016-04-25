@@ -16,10 +16,7 @@
             = i.hidden_field :role, value: :main
       .col-md-12
         %ul.proto-sub-list.list-group
-          - if action == 'new'
-            = render 'new_sub_image_form', f: f
-          - else
-            = render 'edit_sub_image_form', f: f
+          = render "#{action}_sub_image_form", f: f
           %li.list-group-item.col-md-4
             .image-upload-plus
               %span +

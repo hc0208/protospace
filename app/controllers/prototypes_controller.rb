@@ -25,7 +25,7 @@ class PrototypesController < Prototype::RankingController
   end
 
   def newest
-    @prototype = Prototype\
+    @prototype = Prototype \
                    .includes(:user)
                    .order(created_at: :DESC)
                    .page(params[:page])
